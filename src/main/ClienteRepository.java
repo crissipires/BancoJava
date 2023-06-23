@@ -32,7 +32,7 @@ public class ClienteRepository extends JFrame {
 		tela.add(scroll);
 	}
 	
-	public void listaClientes(Connection conexao) {
+	public void ListarClientes(Connection conexao) {
 		String query = "SELECT * FROM cliente";	
 
 		try {
@@ -42,19 +42,19 @@ public class ClienteRepository extends JFrame {
 			while (resultSet.next()) {
 				
 				Cliente cliente = new Cliente();				
-				cliente.id = resultSet.getInt("idCliente");
-				cliente.nome = resultSet.getString("nome");
-				cliente.cpf = resultSet.getString("cpf");
-				cliente.dataNascimento = resultSet.getString("dataNascimento");
-				cliente.email = resultSet.getString("email");
-				cliente.numeroTelefone = resultSet.getString("numeroTelefone");
+				cliente.Id = resultSet.getInt("idCliente");
+				cliente.Nome = resultSet.getString("nome");
+				cliente.Cpf = resultSet.getString("cpf");
+				cliente.DataNascimento = resultSet.getString("dataNascimento");
+				cliente.Email = resultSet.getString("email");
+				cliente.NumeroTelefone = resultSet.getString("numeroTelefone");
 				
 				txtAreaResultado.append(
-						"Nome: " + cliente.nome +
-						"\nCPF: " + cliente.cpf +
-						"\nData de Nascimento: " + cliente.dataNascimento +
-						"\nE-mail: " + cliente.email +
-						"\nNúmero do telefone: " + cliente.numeroTelefone + "\n\n"
+						"Nome: " + cliente.Nome +
+						"\nCPF: " + cliente.Cpf +
+						"\nData de Nascimento: " + cliente.DataNascimento +
+						"\nE-mail: " + cliente.Email +
+						"\nNúmero do telefone: " + cliente.NumeroTelefone + "\n\n"
 					);
 			}
 			st.close();
@@ -64,49 +64,49 @@ public class ClienteRepository extends JFrame {
 		}	
 	}
 	
-	public void insereCliente(Connection conexao, Cliente cliente) {
+	public void InserirCliente(Connection conexao, Cliente cliente) {
+		if(cliente == null) {
+			return;
+		}
+		
 		PreparedStatement ps = null;
 		String query = "INSERT INTO cliente (nome, cpf, dataNascimento, numeroTelefone, email, Endereco_idEndereco)"
 				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			ps = conexao.prepareStatement(query);
-			ps.setString(1, cliente.nome);
-			ps.setString(2, cliente.cpf);
-			ps.setString(3, cliente.dataNascimento);
-			ps.setString(4, cliente.numeroTelefone);
-			ps.setString(5, cliente.email);
-			ps.setInt(6, 1); //fazer o usuario escolher um endereco que ja ta cadastrado no banco
+			ps.setString(1, cliente.Nome);
+			ps.setString(2, cliente.Cpf);
+			ps.setString(3, cliente.DataNascimento);
+			ps.setString(4, cliente.NumeroTelefone);
+			ps.setString(5, cliente.Email);
+			ps.setInt(6, cliente.IdEndereco); 
 			ps.execute();
 			ps.close();
 			
-			JOptionPane.showMessageDialog(null, "Cliente de nome: " + cliente.nome + " inserido com sucesso!");
+			JOptionPane.showMessageDialog(null, "Cliente de nome: " + cliente.Nome + " inserido com sucesso!");
 		} catch (SQLException e) {			
 			System.out.println("Erro ao inserir cliente " + e.getMessage());
 		}
 	}
 	
-	public void editaCliente(Connection conexao) {
+	public void EditarCliente(Connection conexao, Cliente cliente) {
+		if(cliente == null) {
+			return;
+		}
+		
 		PreparedStatement ps = null;
 		String query = "UPDATE cliente SET nome = ?, cpf = ?, dataNascimento = ?, numeroTelefone = ?, email = ?, Endereco_idEndereco = ?"
 				+ " WHERE idCliente = ?";
 		
-		String nome = JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o nome:");
-		String cpf = JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o CPF:");
-		String dataNascimento = JOptionPane.showInputDialog("Edição de Cliente\n\nInforme a data de nascimento:");
-		String email = JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o e-mail:");
-		String numeroTelefone = JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o número de telefone:");
-		int idEndereco = 2; //arrumar isso pro usuario escolher o endereco
-		int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o id do cliente que deseja alterar:"));
-		
 		try {
 			ps = conexao.prepareStatement(query);
-			ps.setString(1, nome);
-			ps.setString(2, cpf);
-			ps.setString(3, dataNascimento);
-			ps.setString(4, numeroTelefone);
-			ps.setString(5, email);
-			ps.setInt(6, idEndereco);
-			ps.setInt(7, idCliente);
+			ps.setString(1, cliente.Nome);
+			ps.setString(2, cliente.Cpf);
+			ps.setString(3, cliente.DataNascimento);
+			ps.setString(4, cliente.NumeroTelefone);
+			ps.setString(5, cliente.Email);
+			ps.setInt(6, cliente.IdEndereco);
+			ps.setInt(7, cliente.Id);
 			ps.execute();
 			ps.close();
 			
@@ -116,10 +116,14 @@ public class ClienteRepository extends JFrame {
 		}	
 	}
 	
-	public void removeCliente(Connection conexao) {
+	public void RemoverCliente(Connection conexao, int id) {
+		if(id == 0) {
+			return;
+		}
+		
 		ResultSet resultSet = null;
 		PreparedStatement ps = null;
-		int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do cliente para remover"));
+		
 		String queryValidarCliente = "SELECT COUNT(*) FROM venda WHERE Cliente_idCliente = ?";
 		
 		try {
@@ -152,7 +156,7 @@ public class ClienteRepository extends JFrame {
 		} 
 	}
 
-	public void findByName(Connection conexao) {
+	public void RecuperarPorNome(Connection conexao) {
 		PreparedStatement ps = null;
 		String query = "SELECT * FROM cliente WHERE nome LIKE ?";
 		String nome = "%" + JOptionPane.showInputDialog("Informe o nome: ") + "%";
@@ -164,18 +168,18 @@ public class ClienteRepository extends JFrame {
 			
 			while (resultSet.next()) {
 				Cliente cliente = new Cliente();				
-				cliente.nome = resultSet.getString("nome");
-				cliente.email = resultSet.getString("email");
-				cliente.numeroTelefone = resultSet.getString("numeroTelefone");
-				cliente.cpf = resultSet.getString("cpf");
-				cliente.dataNascimento = resultSet.getString("dataNascimento");
+				cliente.Nome = resultSet.getString("nome");
+				cliente.Email = resultSet.getString("email");
+				cliente.NumeroTelefone = resultSet.getString("numeroTelefone");
+				cliente.Cpf = resultSet.getString("cpf");
+				cliente.DataNascimento = resultSet.getString("dataNascimento");
 
 				JOptionPane.showMessageDialog(null,
-						"Busca por nome: " + cliente.nome +
-						"\n\nCPF: " + cliente.cpf +
-						"\nNúmero de telefone: " + cliente.numeroTelefone +
-						"\nData de nascimento: " + cliente.dataNascimento +
-						"\nE-mail: " + cliente.email
+						"Busca por nome: " + cliente.Nome +
+						"\n\nCPF: " + cliente.Cpf +
+						"\nNúmero de telefone: " + cliente.NumeroTelefone +
+						"\nData de nascimento: " + cliente.DataNascimento +
+						"\nE-mail: " + cliente.Email
 					);
 			}
 			resultSet.close();
