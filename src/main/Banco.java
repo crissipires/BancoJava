@@ -15,10 +15,7 @@ public class Banco {
 	public Connection getConexao() {
 		try {
 			connection = DriverManager.getConnection(URL, USER, SENHA);
-			System.out.println("Banco Conectado");
-			
-			ClienteRepository.listaProdutos(connection);
-			
+			System.out.println("Conexão Aberta");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -29,7 +26,7 @@ public class Banco {
 		if (connection != null) {
 			try {
 				connection.close();
-				System.out.println("connection Fechada");
+				System.out.println("Conexão Fechada");
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}

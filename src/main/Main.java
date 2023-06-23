@@ -11,29 +11,24 @@ public class Main {
 		Banco banco = new Banco();
 		Connection conexao = banco.getConexao();
 		
+		ClienteRepository clienteRepository = new ClienteRepository();
+		clienteRepository.listaClientes(conexao);
 		
-
-		// ProdutoBanco pBanco = new ProdutoBanco();
-		// pBanco.listaProdutos(conn);
+		//-----------------testes do crud
 		
-		/*
-		Produto p = new Produto();
-		p.nome = JOptionPane.showInputDialog("Informe o Nome do produto:");
-		p.preco = Float.parseFloat(
-				JOptionPane.showInputDialog("Informe o Preco do produto:"));
-		pBanco.insereProduto(conn, p);
-		*/
+		Cliente cliente = new Cliente();
+		cliente.nome = JOptionPane.showInputDialog("Cadastro de Cliente\n\nInforme o nome:");
+		cliente.cpf = JOptionPane.showInputDialog("Cadastro de Cliente\n\nInforme o CPF:");
+		cliente.dataNascimento = JOptionPane.showInputDialog("Cadastro de Cliente\n\nInforme a data de nascimento:");
+		cliente.email = JOptionPane.showInputDialog("Cadastro de Cliente\n\nInforme o e-mail:");
+		cliente.numeroTelefone = JOptionPane.showInputDialog("Cadastro de Cliente\n\nInforme o número do telefone:");
 		
-		//pBanco.editaProduto(conn);
+		clienteRepository.insereCliente(conexao, cliente);
+		clienteRepository.editaCliente(conexao);
+		clienteRepository.removeCliente(conexao);
+		clienteRepository.findByName(conexao);
 		
-		//pBanco.removeProduto(conn);
-
-		//pBanco.listaProdutos(conn);
-		
-		// System.out.println("-------------------------------------");
-		// pBanco.buscaPorNome(conn);
-		
-		//banco.fechaConexao();
+		banco.fechaConexao();
 		
 	}
 }
