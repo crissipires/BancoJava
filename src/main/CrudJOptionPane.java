@@ -2,6 +2,10 @@ package main;
 
 import javax.swing.*;
 
+import model.Banco;
+import model.Cliente;
+import repository.ClienteRepository;
+
 public class CrudJOptionPane {
 	
 	private final ClienteRepository _clienteRepository;
@@ -16,20 +20,20 @@ public class CrudJOptionPane {
         boolean sair = false;
 
         while (!sair) {
-            int opcao = ExibirMenu();
+            int opcao = exibirMenu();
 
             switch (opcao) {
                 case 0: // Adicionar Cliente
-                    AdicionarCliente();
+                    adicionarCliente();
                     break;
                 case 1: // Listar Clientes
-                	ListarCliente();
+                	listarCliente();
                     break;
                 case 2: // Editar Cliente
-                    EditarCliente();
+                    editarCliente();
                     break;
                 case 3: // Remover Cliente
-                	RemoverCliente();
+                	removerCliente();
                     break;
                 case 4: // Adicionar Venda
                     //adicionarVenda();
@@ -53,7 +57,7 @@ public class CrudJOptionPane {
         }
     }
     
-    private int ExibirMenu() {
+    private int exibirMenu() {
         String[] options = { "Adicionar Cliente", "Listar Clientes", "Editar Cliente", "Remover Cliente",
                 "Adicionar Venda", "Listar Vendas", "Editar Venda", "Remover Venda", "Sair" };
 
@@ -61,22 +65,22 @@ public class CrudJOptionPane {
                 JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
     }
     
-    private void AdicionarCliente() { 	
-    	Cliente cliente = ClienteJOPtionPane.CriarCliente();
-    	_clienteRepository.InserirCliente(_banco.getConexao(), cliente);
+    private void adicionarCliente() { 	
+    	Cliente cliente = ClienteJOPtionPane.criarCliente();
+    	_clienteRepository.inserirCliente(_banco.getConexao(), cliente);
     }
     
-    private void RemoverCliente() {
-    	int id = ClienteJOPtionPane.RemoverCliente();
-    	_clienteRepository.RemoverCliente(_banco.getConexao(), id);
+    private void removerCliente() {
+    	int id = ClienteJOPtionPane.removerCliente();
+    	_clienteRepository.removerCliente(_banco.getConexao(), id);
     }
     
-    private void ListarCliente() {
-    	_clienteRepository.ListarClientes(_banco.getConexao());
+    private void listarCliente() {
+    	_clienteRepository.listarClientes(_banco.getConexao());
     }
     
-    private void EditarCliente() {
-    	Cliente cliente = ClienteJOPtionPane.AtualizarCliente();
-    	_clienteRepository.EditarCliente(_banco.getConexao(), cliente);
+    private void editarCliente() {
+    	Cliente cliente = ClienteJOPtionPane.atualizarCliente();
+    	_clienteRepository.editarCliente(_banco.getConexao(), cliente);
     }
 }

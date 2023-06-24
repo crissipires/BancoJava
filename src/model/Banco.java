@@ -1,4 +1,4 @@
-package main;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ public class Banco {
 
 	private static final String URL = "jdbc:mysql://localhost/mydb";
 	private static final String USER = "root";
-	private static final String SENHA = "root";
+	private static final String SENHA = "1234";
 
 	private Connection connection;
 		

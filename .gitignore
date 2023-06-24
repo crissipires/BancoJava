@@ -1,0 +1,9 @@
+/main/
+/presentation/
+/JOPtionPane/
+/domain/
+.project
+.classpath
+.idea
+.settings
+.vscode

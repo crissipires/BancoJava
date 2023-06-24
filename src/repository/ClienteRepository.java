@@ -1,4 +1,4 @@
-package main;
+package repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import model.Cliente;
 
 public class ClienteRepository extends JFrame {
 	
@@ -32,7 +34,7 @@ public class ClienteRepository extends JFrame {
 		tela.add(scroll);
 	}
 	
-	public void ListarClientes(Connection conexao) {
+	public void listarClientes(Connection conexao) {
 		String query = "SELECT * FROM cliente";	
 
 		try {
@@ -40,7 +42,6 @@ public class ClienteRepository extends JFrame {
 			ResultSet resultSet = st.executeQuery(query);
 						
 			while (resultSet.next()) {
-				
 				Cliente cliente = new Cliente();				
 				cliente.Id = resultSet.getInt("idCliente");
 				cliente.Nome = resultSet.getString("nome");
@@ -64,7 +65,7 @@ public class ClienteRepository extends JFrame {
 		}	
 	}
 	
-	public void InserirCliente(Connection conexao, Cliente cliente) {
+	public void inserirCliente(Connection conexao, Cliente cliente) {
 		if(cliente == null) {
 			return;
 		}
@@ -89,7 +90,7 @@ public class ClienteRepository extends JFrame {
 		}
 	}
 	
-	public void EditarCliente(Connection conexao, Cliente cliente) {
+	public void editarCliente(Connection conexao, Cliente cliente) {
 		if(cliente == null) {
 			return;
 		}
@@ -116,7 +117,7 @@ public class ClienteRepository extends JFrame {
 		}	
 	}
 	
-	public void RemoverCliente(Connection conexao, int id) {
+	public void removerCliente(Connection conexao, int id) {
 		if(id == 0) {
 			return;
 		}
