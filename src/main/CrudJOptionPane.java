@@ -35,19 +35,22 @@ public class CrudJOptionPane {
                 case 3: // Remover Cliente
                 	removerCliente();
                     break;
-                case 4: // Adicionar Venda
+                case 4: //Buscar por nome
+                	buscarPorNome();
+                	break;
+                case 5: // Adicionar Venda
                     //adicionarVenda();
                     break;
-                case 5: // Listar Vendas
+                case 6: // Listar Vendas
                     //listarVendas();
                     break;
-                case 6: // Editar Venda
+                case 7: // Editar Venda
                     //atualizarVenda();
                     break;
-                case 7: // Remover Venda
+                case 8: // Remover Venda
                     //removerVenda();
                     break;
-                case 8: // Sair
+                case 9: // Sair
                     sair = true;
                     break;
                 default:
@@ -82,5 +85,9 @@ public class CrudJOptionPane {
     private void editarCliente() {
     	Cliente cliente = ClienteJOPtionPane.atualizarCliente();
     	_clienteRepository.editarCliente(_banco.getConexao(), cliente);
+    }
+    
+    private void buscarPorNome() {
+    	_clienteRepository.buscarPorNome(_banco.getConexao());
     }
 }

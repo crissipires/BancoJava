@@ -157,7 +157,7 @@ public class ClienteRepository extends JFrame {
 		} 
 	}
 
-	public void RecuperarPorNome(Connection conexao) {
+	public void buscarPorNome(Connection conexao) {
 		PreparedStatement ps = null;
 		String query = "SELECT * FROM cliente WHERE nome LIKE ?";
 		String nome = "%" + JOptionPane.showInputDialog("Informe o nome: ") + "%";
