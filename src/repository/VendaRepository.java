@@ -24,12 +24,16 @@ public class VendaRepository {
 			
 			while(resultSet.next()) {
 				Venda venda = new Venda();
-				venda.idVenda = resultSet.getInt("idVenda");
-				venda.Agenda_idAgenda = resultSet.getInt("Agenda_idAgenda");
-				venda.Cliente_idCliente = resultSet.getInt("Cliente_idCliente");
-				venda.Funcionario_idFuncionario = resultSet.getInt("Funcionario_idFuncionario");
+				venda.Id = resultSet.getInt("idVenda");
+				venda.IdAgenda = resultSet.getInt("Agenda_idAgenda");
+				venda.IdCliente = resultSet.getInt("Cliente_idCliente");
+				venda.IdFuncionario = resultSet.getInt("Funcionario_idFuncionario");
 				
-				//ver forma de mostrar
+				System.out.println("Id da Venda: " + venda.Id);
+			    System.out.println("IdAgenda: " + venda.IdAgenda);
+			    System.out.println("IdCliente: " + venda.IdCliente);
+			    System.out.println("IdFuncionário: " + venda.IdFuncionario);
+			    System.out.println("----------------------");
 			} 
 			st.close();
 			resultSet.close();	
@@ -49,9 +53,9 @@ public class VendaRepository {
 		
 		try {
 			ps = conexao.prepareStatement(query);
-			ps.setInt(1, venda.Funcionario_idFuncionario);
-			ps.setInt(2, venda.Cliente_idCliente);
-			ps.setInt(3, venda.Agenda_idAgenda);
+			ps.setInt(1, venda.IdFuncionario);
+			ps.setInt(2, venda.IdCliente);
+			ps.setInt(3, venda.IdAgenda);
 			ps.execute();
 			ps.close();
 			
@@ -72,10 +76,10 @@ public class VendaRepository {
 		
 		try {
 			ps = conexao.prepareStatement(query);
-			ps.setInt(1, venda.Funcionario_idFuncionario);
-			ps.setInt(2, venda.Cliente_idCliente);
-			ps.setInt(3, venda.Agenda_idAgenda);
-			ps.setInt(4, venda.idVenda);
+			ps.setInt(1, venda.IdFuncionario);
+			ps.setInt(2, venda.IdCliente);
+			ps.setInt(3, venda.IdAgenda);
+			ps.setInt(4, venda.Id);
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {

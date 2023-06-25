@@ -1,12 +1,42 @@
-package main;
+package apresentation;
 
 import javax.swing.JOptionPane;
 
+import model.Banco;
 import model.Cliente;
+import repository.ClienteRepository;
+import repository.VendaRepository;
 
-public class ClienteJOPtionPane {
+public class ClienteJOptionPane {	
 	
-	public static Cliente criarCliente() {
+	private final ClienteRepository _clienteRepository;
+	private final Banco _banco;
+
+	public ClienteJOptionPane() {
+		_banco = new Banco();
+		_clienteRepository = new ClienteRepository();
+	}
+	
+	public void AdicionarCliente() {
+		Cliente cliente = Criar();
+		_clienteRepository.inserirCliente(_banco.getConexao(), cliente);
+	}
+
+	public void RemoverCliente() {
+		int id = Remover();
+		_clienteRepository.removerCliente(_banco.getConexao(), id);
+	}
+
+	public void ListarCliente() {
+		_clienteRepository.listarClientes(_banco.getConexao());
+	}
+
+	public void EditarCliente() {
+		Cliente cliente = Atualizar();
+		_clienteRepository.editarCliente(_banco.getConexao(), cliente);
+	}
+	
+	private  Cliente Criar() {
 		String nome = JOptionPane.showInputDialog("Cadastro de Cliente\n\nInforme o nome:");
 		String cpf = JOptionPane.showInputDialog("Cadastro de Cliente\n\nInforme o CPF:");
 		String dataNascimento = JOptionPane.showInputDialog("Cadastro de Cliente\n\nInforme a data de nascimento:");
@@ -18,12 +48,7 @@ public class ClienteJOPtionPane {
 		return cliente; 
 	}
 	
-	public static int removerCliente() {
-		int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do cliente para remover"));
-		return id;
-	}
-	
-	public static Cliente atualizarCliente() {
+	private Cliente Atualizar() {
 		int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o id do cliente que deseja alterar:"));
 		String nome = JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o nome:");
 		String cpf = JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o CPF:");
@@ -33,6 +58,11 @@ public class ClienteJOPtionPane {
 		int idEndereco =  Integer.parseInt(JOptionPane.showInputDialog("Edição de Cliente\n\nInforme o id do endereço"));
 				
 		return new Cliente(idCliente,nome,cpf,dataNascimento,numeroTelefone,email,idEndereco);
+	}
+	
+	private  int Remover() {
+		int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do cliente para remover"));
+		return id;
 	}
 
 }

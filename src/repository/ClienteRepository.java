@@ -8,31 +8,14 @@ import java.sql.Statement;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import model.Cliente;
 
-public class ClienteRepository extends JFrame {
+public class ClienteRepository{
 	
 	private Statement st;
-	private JFrame tela = new JFrame();
-	private JTextArea txtAreaResultado = new JTextArea();
-	
-	public ClienteRepository() {
-		tela.setSize(350, 400);
-		tela.setTitle("Estética - CRUD");
-		tela.setLayout(null);
-		tela.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		tela.setVisible(true);
-		txtAreaResultado.setEditable(false);
-		
-		JScrollPane scroll = new JScrollPane(txtAreaResultado);
-		scroll.setBounds(10, 10, 300, 400);
-		
-		tela.add(scroll);
-	}
 	
 	public void listarClientes(Connection conexao) {
 		String query = "SELECT * FROM cliente";	
@@ -50,19 +33,20 @@ public class ClienteRepository extends JFrame {
 				cliente.Email = resultSet.getString("email");
 				cliente.NumeroTelefone = resultSet.getString("numeroTelefone");
 				
-				txtAreaResultado.append(
-						"Nome: " + cliente.Nome +
-						"\nCPF: " + cliente.Cpf +
-						"\nData de Nascimento: " + cliente.DataNascimento +
-						"\nE-mail: " + cliente.Email +
-						"\nNúmero do telefone: " + cliente.NumeroTelefone + "\n\n"
-					);
+				System.out.println("ID do Cliente: " + cliente.Id);
+				System.out.println("Nome: " + cliente.Nome);
+				System.out.println("CPF: " + cliente.Cpf);
+				System.out.println("Data de Nascimento: " + cliente.DataNascimento);
+				System.out.println("Email: " + cliente.Email);
+				System.out.println("Número de Telefone: " + cliente.NumeroTelefone);
+				System.out.println("----------------------");
 			}
 			st.close();
 			resultSet.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}	
+		}
+		
 	}
 	
 	public void inserirCliente(Connection conexao, Cliente cliente) {
