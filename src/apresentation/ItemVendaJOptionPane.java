@@ -53,9 +53,9 @@ public class ItemVendaJOptionPane {
 	}
 	
 	public static ItemVenda AtualizarItemVenda() {
-		int codigoItemVenda = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme o Código da venda:"));
-		int codigoProcedimento = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme o Código do procedimento:"));
-		int valor = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme o valor da venda:"));
+		int codigoItemVenda = Integer.parseInt(JOptionPane.showInputDialog("Edição de ItemVenda\n\nInforme o Código da venda:"));
+		int codigoProcedimento = Integer.parseInt(JOptionPane.showInputDialog("Edição de ItemVenda\n\nInforme o Código do procedimento:"));
+		int valor = Integer.parseInt(JOptionPane.showInputDialog("Edição de ItemVenda\n\nInforme o valor da venda:"));
 		
 		return new ItemVenda(codigoItemVenda,codigoProcedimento, valor);	
 	}

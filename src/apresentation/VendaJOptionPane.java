@@ -52,10 +52,10 @@ public class VendaJOptionPane {
 	}
 	
 	private Venda Atualizar() {
-		int codigoVenda = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de Venda\n\nInforme o Código da Venda:"));
-		int codigoFuncionario = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de Venda\n\nInforme o Código do funcionário:"));
-		int codigoCliente = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de Venda\n\nInforme o Código do cliente:"));
-		int codigoAgenda = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de Venda\n\nInforme o Código da agenda:"));
+		int codigoVenda = Integer.parseInt(JOptionPane.showInputDialog("Edição de Venda\n\nInforme o Código da Venda:"));
+		int codigoFuncionario = Integer.parseInt(JOptionPane.showInputDialog("Edição de Venda\n\nInforme o Código do funcionário:"));
+		int codigoCliente = Integer.parseInt(JOptionPane.showInputDialog("Edição de Venda\n\nInforme o Código do cliente:"));
+		int codigoAgenda = Integer.parseInt(JOptionPane.showInputDialog("Edição de Venda\n\nInforme o Código da agenda:"));
 		
 		return new Venda(codigoVenda,codigoFuncionario, codigoCliente, codigoAgenda);			
 	}
