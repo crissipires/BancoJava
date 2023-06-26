@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -14,7 +16,7 @@ public class ItemVendaRepository {
 	
 	private Statement st;
 	
-	public void inserirItemVenda(Connection conexao, ItemVenda itemVenda) {
+	public void Inserir(Connection conexao, ItemVenda itemVenda) {
 		if (itemVenda == null) {
 			return;
 		}
@@ -25,9 +27,9 @@ public class ItemVendaRepository {
 		
 		try {
 			ps = conexao.prepareStatement(query);
-			ps.setInt(1, itemVenda.Procedimento_idProcedimento);
-			ps.setFloat(2, itemVenda.valor);
-			ps.setInt(3, itemVenda.idVenda);
+			ps.setInt(1, itemVenda.IdProcedimento);
+			ps.setFloat(2, itemVenda.Valor);
+			ps.setInt(3, itemVenda.IdVenda);
 			ps.execute();
 			ps.close();
 			
@@ -37,8 +39,9 @@ public class ItemVendaRepository {
 		}
 	}
 	
-	public void listarItensVenda(Connection conexao) {
+	public List<ItemVenda> Listar(Connection conexao) {
 		String query = "SELECT * FROM itensVenda";
+		List<ItemVenda> lista = new ArrayList<>();
 		
 		try {
 			st = conexao.createStatement();
@@ -46,20 +49,22 @@ public class ItemVendaRepository {
 			
 			while(resultSet.next()) {
 				ItemVenda itemVenda = new ItemVenda();
-				itemVenda.idVenda = resultSet.getInt("idVenda");
-				itemVenda.Procedimento_idProcedimento = resultSet.getInt("Procedimento_idProcedimento");
-				itemVenda.valor = resultSet.getFloat("valor");
+				itemVenda.IdVenda = resultSet.getInt("Venda_idVenda");
+				itemVenda.IdProcedimento = resultSet.getInt("Procedimento_idProcedimento");
+				itemVenda.Valor = resultSet.getFloat("valor");
 				
-				//mostrar
+				lista.add(itemVenda);
 			}
 			st.close();
 			resultSet.close();
 		} catch (SQLException e) {
 			System.out.println("Erro ao listar item vendas: " + e.getMessage());
 		}
+		
+		return lista;
 	}
 	
-	public void editarItemVenda(Connection conexao, ItemVenda itemVenda) {
+	public void Editar(Connection conexao, ItemVenda itemVenda) {
 		if (itemVenda == null) {
 			return;
 		}
@@ -70,8 +75,8 @@ public class ItemVendaRepository {
 		
 		try {
 			ps = conexao.prepareStatement(query);
-			ps.setInt(1, itemVenda.Procedimento_idProcedimento);
-			ps.setFloat(2, itemVenda.valor);
+			ps.setInt(1, itemVenda.IdProcedimento);
+			ps.setFloat(2, itemVenda.Valor);
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
@@ -79,7 +84,7 @@ public class ItemVendaRepository {
 		}
 	}
 	
-	public void removerItemVenda(Connection conexao, int id) {
+	public void Remover(Connection conexao, int id) {
 		if (id == 0) {
 			return;
 		}

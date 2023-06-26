@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import model.ItemVenda;
 import model.Venda;
 
 public class VendaRepository {
@@ -15,8 +18,9 @@ public class VendaRepository {
 	private Statement st;
 	
 	
-	public void listarVendas(Connection conexao) {
+	public List<Venda> Listar(Connection conexao) {
 		String query = "SELECT * FROM venda";
+		List<Venda> lista = new ArrayList<>();
 		
 		try {
 			st = conexao.createStatement();
@@ -24,21 +28,23 @@ public class VendaRepository {
 			
 			while(resultSet.next()) {
 				Venda venda = new Venda();
-				venda.idVenda = resultSet.getInt("idVenda");
-				venda.Agenda_idAgenda = resultSet.getInt("Agenda_idAgenda");
-				venda.Cliente_idCliente = resultSet.getInt("Cliente_idCliente");
-				venda.Funcionario_idFuncionario = resultSet.getInt("Funcionario_idFuncionario");
+				venda.Id = resultSet.getInt("idVenda");
+				venda.IdAgenda = resultSet.getInt("Agenda_idAgenda");
+				venda.IdCliente = resultSet.getInt("Cliente_idCliente");
+				venda.IdFuncionario = resultSet.getInt("Funcionario_idFuncionario");
 				
-				//ver forma de mostrar
+				lista.add(venda);
 			} 
 			st.close();
 			resultSet.close();	
 		} catch (SQLException e) {
 			System.out.println("Erro ao listar vendas: " + e.getMessage());
 		}
+		
+		return lista;
 	}
 	
-	public void inserirVenda(Connection conexao, Venda venda) {
+	public void Inserir(Connection conexao, Venda venda) {
 		if (venda == null) {
 			return;
 		}
@@ -49,9 +55,9 @@ public class VendaRepository {
 		
 		try {
 			ps = conexao.prepareStatement(query);
-			ps.setInt(1, venda.Funcionario_idFuncionario);
-			ps.setInt(2, venda.Cliente_idCliente);
-			ps.setInt(3, venda.Agenda_idAgenda);
+			ps.setInt(1, venda.IdFuncionario);
+			ps.setInt(2, venda.IdCliente);
+			ps.setInt(3, venda.IdAgenda);
 			ps.execute();
 			ps.close();
 			
@@ -61,7 +67,7 @@ public class VendaRepository {
 		}
 	}
 	
-	public void editarVenda(Connection conexao, Venda venda) {
+	public void Editar(Connection conexao, Venda venda) {
 		if (venda == null) {
 			return;
 		}
@@ -72,10 +78,10 @@ public class VendaRepository {
 		
 		try {
 			ps = conexao.prepareStatement(query);
-			ps.setInt(1, venda.Funcionario_idFuncionario);
-			ps.setInt(2, venda.Cliente_idCliente);
-			ps.setInt(3, venda.Agenda_idAgenda);
-			ps.setInt(4, venda.idVenda);
+			ps.setInt(1, venda.IdFuncionario);
+			ps.setInt(2, venda.IdCliente);
+			ps.setInt(3, venda.IdAgenda);
+			ps.setInt(4, venda.Id);
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
