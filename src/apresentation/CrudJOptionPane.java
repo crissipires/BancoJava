@@ -4,16 +4,16 @@ import javax.swing.*;
 
 public class CrudJOptionPane {
 	
-	private final ClienteJOPtionPane _clienteJOPtionPane;
-	private final VendaJOPtionPane _vendaJOPtionPane;
-	private final ItemVendaJOPtionPane _itemVendaJOPtionPane;
+	private final ClienteJOptionPane _clienteJOPtionPane;
+	private final VendaJOptionPane _vendaJOPtionPane;
+	private final ItemVendaJOptionPane _itemVendaJOPtionPane;
 	private final FuncionarioJOptionPane _funcionarioOPtionPane;
 	private final EnderecoJOptionPane _enderecoJOPtionPane;
 	
 	public CrudJOptionPane() {
-		_clienteJOPtionPane = new ClienteJOPtionPane();
-	    _vendaJOPtionPane = new VendaJOPtionPane();
-		_itemVendaJOPtionPane = new ItemVendaJOPtionPane();
+		_clienteJOPtionPane = new ClienteJOptionPane();
+	    _vendaJOPtionPane = new VendaJOptionPane();
+		_itemVendaJOPtionPane = new ItemVendaJOptionPane();
 		_funcionarioOPtionPane = new  FuncionarioJOptionPane();
 		_enderecoJOPtionPane = new EnderecoJOptionPane();
 		
