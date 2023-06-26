@@ -2,10 +2,6 @@ package apresentation;
 
 import javax.swing.*;
 
-import model.Banco;
-import model.Cliente;
-import repository.ClienteRepository;
-
 public class CrudJOptionPane {
 	
 	private final ClienteJOPtionPane _clienteJOPtionPane;
@@ -28,8 +24,6 @@ public class CrudJOptionPane {
 
         while (!sair) {
             int opcao = exibirMenu();
-            
-            System.out.println(opcao);
 
             switch (opcao) {
                 case 0: 
