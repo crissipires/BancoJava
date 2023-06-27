@@ -31,13 +31,13 @@ public class ClienteJOptionPane {
 	public void Listar() {
 		List<Cliente> listaClientes = _clienteRepository.Listar(_banco.getConexao());
 		for(Cliente cliente: listaClientes) {
-			System.out.println("ID do Cliente: " + cliente.Id);
+			System.out.println("Id do Cliente: " + cliente.Id);
 			System.out.println("Nome: " + cliente.Nome);
 			System.out.println("CPF: " + cliente.Cpf);
 			System.out.println("Data de Nascimento: " + cliente.DataNascimento);
 			System.out.println("Email: " + cliente.Email);
 			System.out.println("Número de Telefone: " + cliente.NumeroTelefone);
-			 System.out.println("---------------------------------");
+			System.out.println("---------------------------------");
 		}
 	}
 
