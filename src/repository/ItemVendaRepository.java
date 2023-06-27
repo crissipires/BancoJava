@@ -88,24 +88,4 @@ public class ItemVendaRepository {
 			System.out.println("Erro ao editar item venda: " + e.getMessage());
 		}
 	}
-	
-	public void Remover(Connection conexao, int id) {
-		if (id == 0) {
-			return;
-		}
-		
-		PreparedStatement ps = null;
-		String query = "DELETE FROM itensVenda WHERE Venda_idVenda = ?";
-		
-		try {
-			ps = conexao.prepareStatement(query);
-			ps.setInt(1, id);
-			ps.setInt(2, id);
-			ps.execute();
-			ps.close();
-		} catch (SQLException e) {
-			System.out.println("Erro ao remover item venda: " + e.getMessage());
-		}
-	}
-	
 }

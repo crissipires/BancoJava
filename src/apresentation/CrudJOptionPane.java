@@ -130,7 +130,7 @@ public class CrudJOptionPane {
         boolean sair = false;
 
         while (!sair) {
-            int opcao = ExibirMenuCrud("Item da Venda\n");
+            int opcao = ExibirMenuCru("Item da Venda\n");
 
             switch (opcao) {
             case 0: 
@@ -159,7 +159,7 @@ public class CrudJOptionPane {
     }
     
     private int exibirMenu() {
-        String[] options = { "Cliente", "Venda", "ItemVenda", "Listar Funcionários","Listar Endereços","Listar Agenda", "Sair" };
+        String[] options = { "Cliente", "Venda", "Item Venda", "Listar Funcionários","Listar Endereços","Listar Agenda", "Sair" };
 
         return JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Menu", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
