@@ -12,29 +12,30 @@ import javax.swing.JOptionPane;
 
 import model.ItemVenda;
 import model.Venda;
+import view.ViewVenda;
 
 public class VendaRepository {
 	
 	private Statement st;
 	
 	
-	public List<Venda> Listar(Connection conexao) {
-		String query = "SELECT * FROM venda";
-		List<Venda> lista = new ArrayList<>();
+	public List<ViewVenda> Listar(Connection conexao) {
+		String query = "SELECT * FROM viewvenda";
+		List<ViewVenda> lista = new ArrayList<>();
 		
 		try {
 			st = conexao.createStatement();
 			ResultSet resultSet = st.executeQuery(query);
 			
 			while(resultSet.next()) {
-				Venda venda = new Venda();
-				venda.Id = resultSet.getInt("idVenda");
-				venda.IdAgenda = resultSet.getInt("Agenda_idAgenda");
-				venda.IdCliente = resultSet.getInt("Cliente_idCliente");
-				venda.IdFuncionario = resultSet.getInt("Funcionario_idFuncionario");
-				venda.observacoes = resultSet.getString("observacoes");
+				ViewVenda vwVenda = new ViewVenda();
+				vwVenda.idVenda = resultSet.getInt("idVenda");
+				vwVenda.dataAtendimento = resultSet.getTimestamp("dataAtendimento");
+				vwVenda.nomeCliente = resultSet.getString("nomeCliente");
+				vwVenda.nomeFuncionario = resultSet.getString("nomeFuncionario");
+				vwVenda.observacoes = resultSet.getString("observacoes");
 				
-				lista.add(venda);
+				lista.add(vwVenda);
 			} 
 			st.close();
 			resultSet.close();	

@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import model.Banco;
 import model.Venda;
 import repository.VendaRepository;
+import view.ViewVenda;
 
 public class VendaJOptionPane {
 	private final VendaRepository _vendaRepository;
@@ -23,13 +24,13 @@ public class VendaJOptionPane {
 	}
 
 	public void Listar() {
-		List<Venda> listaVendas = _vendaRepository.Listar(_banco.getConexao());
+		List<ViewVenda> listaVendas = _vendaRepository.Listar(_banco.getConexao());
 		System.out.println("------- VENDAS -------");
-		for (Venda venda : listaVendas) {
-			System.out.println("Id da Venda: " + venda.Id);
-			System.out.println("Id do Funcionario: " + venda.IdFuncionario);
-			System.out.println("Id do Cliente: " + venda.IdCliente);
-			System.out.println("Id da Agenda: " + venda.IdAgenda);
+		for (ViewVenda venda : listaVendas) {
+			System.out.println("Id da Venda: " + venda.idVenda);
+			System.out.println("Nome do Funcionario: " + venda.nomeFuncionario);
+			System.out.println("Nome do Cliente: " + venda.nomeCliente);
+			System.out.println("Data do agendamento: " + venda.dataAtendimento);
 			System.out.println("Observações: " + venda.observacoes);
 			System.out.println("---------------------------------");
 		}
