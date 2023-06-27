@@ -93,7 +93,7 @@ public class CrudJOptionPane {
         boolean sair = false;
 
         while (!sair) {
-            int opcao = ExibirMenuCrud("Venda");
+            int opcao = ExibirMenuCru("Venda");
 
             switch (opcao) {
 	            case 0: 
@@ -105,13 +105,10 @@ public class CrudJOptionPane {
 	            case 2: 
 	            	_vendaJOPtionPane.Editar();
 	                break;
-	            case 3: 
-	            	_vendaJOPtionPane.Remover();
-                    break;
-                case 4: 
+                case 3: 
                 	sair = true;
                     break;
-                case 5: 
+                case 4: 
                 	System.exit(0);
                     break;
                 case -1:
@@ -168,6 +165,13 @@ public class CrudJOptionPane {
     
     private int ExibirMenuCrud(String nome) {
         String[] options = { "Adicionar", "Listar", "Editar", "Remover","Voltar ao menu principal", "Sair" };
+
+        return JOptionPane.showOptionDialog(null, nome + "Escolha uma opção:", "Menu", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+    }
+    
+    private int ExibirMenuCru(String nome) {
+        String[] options = { "Adicionar", "Listar", "Editar","Voltar ao menu principal", "Sair" };
 
         return JOptionPane.showOptionDialog(null, nome + "Escolha uma opção:", "Menu", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
