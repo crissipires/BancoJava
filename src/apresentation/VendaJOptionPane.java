@@ -29,18 +29,13 @@ public class VendaJOptionPane {
 			System.out.println("Id do Funcionario: " + venda.IdFuncionario);
 			System.out.println("Id do Cliente: " + venda.IdCliente);
 			System.out.println("Id da Agenda: " + venda.IdAgenda);
-			 System.out.println("---------------------------------");
+			System.out.println("---------------------------------");
 		}
 	}
 
 	public void Editar() {
 		Venda venda = Atualizar();
 		_vendaRepository.Editar(_banco.getConexao(), venda);
-	}
-
-	public void Remover() {
-		int id = RemoverVenda();
-		// _vendaRepository.(_banco.getConexao(), id);
 	}
 	
 	private Venda Criar() {
