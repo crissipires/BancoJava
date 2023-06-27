@@ -60,8 +60,4 @@ public class VendaJOptionPane {
 		return new Venda(codigoVenda,codigoFuncionario, codigoCliente, codigoAgenda, obs);			
 	}
 	
-	private int RemoverVenda() {
-		int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o id da venda para remover"));
-		return id;
-	}
 }

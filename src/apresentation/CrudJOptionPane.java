@@ -9,6 +9,7 @@ public class CrudJOptionPane {
 	private final ItemVendaJOptionPane _itemVendaJOPtionPane;
 	private final FuncionarioJOptionPane _funcionarioOPtionPane;
 	private final EnderecoJOptionPane _enderecoJOPtionPane;
+	private final AgendaJOptionPane _agendaJOptionPane;
 	
 	public CrudJOptionPane() {
 		_clienteJOPtionPane = new ClienteJOptionPane();
@@ -16,6 +17,7 @@ public class CrudJOptionPane {
 		_itemVendaJOPtionPane = new ItemVendaJOptionPane();
 		_funcionarioOPtionPane = new  FuncionarioJOptionPane();
 		_enderecoJOPtionPane = new EnderecoJOptionPane();
+		_agendaJOptionPane = new AgendaJOptionPane();
 		
 	}
 	
@@ -42,6 +44,9 @@ public class CrudJOptionPane {
                 	_enderecoJOPtionPane.Listar();
                 	break;
                 case 5:
+                	_agendaJOptionPane.Listar();
+                	break;
+                case 6:
                 	 sair = true;
                      break;
                 case -1:
@@ -138,12 +143,9 @@ public class CrudJOptionPane {
             	_itemVendaJOPtionPane.Editar();
                 break;
             case 3: 
-            	_itemVendaJOPtionPane.Remover();
-                break;
-            case 4: 
             	sair = true;
                 break;
-            case 5: 
+            case 4: 
             	System.exit(0);
                 break;
             case -1:
@@ -157,7 +159,7 @@ public class CrudJOptionPane {
     }
     
     private int exibirMenu() {
-        String[] options = { "Cliente", "Venda", "ItemVenda", "Listar Funcionários","Listar Endereços", "Sair" };
+        String[] options = { "Cliente", "Venda", "ItemVenda", "Listar Funcionários","Listar Endereços","Listar Agenda", "Sair" };
 
         return JOptionPane.showOptionDialog(null, "Escolha uma opção:", "Menu", JOptionPane.DEFAULT_OPTION,
                 JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
