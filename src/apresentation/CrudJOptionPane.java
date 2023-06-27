@@ -143,12 +143,9 @@ public class CrudJOptionPane {
             	_itemVendaJOPtionPane.Editar();
                 break;
             case 3: 
-            	_itemVendaJOPtionPane.Remover();
-                break;
-            case 4: 
             	sair = true;
                 break;
-            case 5: 
+            case 4: 
             	System.exit(0);
                 break;
             case -1:
