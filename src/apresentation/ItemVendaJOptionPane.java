@@ -42,11 +42,6 @@ public class ItemVendaJOptionPane {
 		ItemVenda itemVenda = AtualizarItemVenda();
 		 _itemVendaRepository.Editar(_banco.getConexao(), itemVenda);
 	}
-
-	public void Remover() {
-		int id = RemoverItemVenda();
-	    _itemVendaRepository.Remover(_banco.getConexao(), id);
-	}
 	
 	public static ItemVenda CriarItemVenda() {
 		int codigoVenda = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme o Código da venda:"));
