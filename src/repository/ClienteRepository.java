@@ -70,6 +70,7 @@ public class ClienteRepository  {
 			
 			JOptionPane.showMessageDialog(null, "Cliente de nome: " + cliente.Nome + " inserido com sucesso!");
 		} catch (SQLException e) {			
+			JOptionPane.showMessageDialog(null, "Ops! Ocorreu um erro ao inserir cliente");
 			System.out.println("Erro ao inserir cliente " + e.getMessage());
 		}
 	}
@@ -97,6 +98,7 @@ public class ClienteRepository  {
 			
 			JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
 		} catch (SQLException e) {			
+			JOptionPane.showMessageDialog(null, "Ops! Ocorreu um erro ao editar cliente");
 			System.out.println("Erro ao alterar cliente: " + e.getMessage());
 		}	
 	}
@@ -137,6 +139,7 @@ public class ClienteRepository  {
 			
 			JOptionPane.showMessageDialog(null, "Cliente removido com sucesso!");
 		} catch (SQLException e) {			
+			JOptionPane.showMessageDialog(null, "Ops! Ocorreu um erro ao remover cliente");
 			System.out.println("Erro ao remover cliente: " + e.getMessage());
 		} 
 	}
