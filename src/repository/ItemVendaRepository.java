@@ -22,7 +22,7 @@ public class ItemVendaRepository {
 		}
 		
 		PreparedStatement ps = null;
-		String query = "INSERT INTO itemVenda (Procedimento_idProcedimento, valor, Venda_idVenda) +"
+		String query = "INSERT INTO itensVenda (Procedimento_idProcedimento, valor, Venda_idVenda)"
 				+ " VALUES (?, ?, ?)";
 		
 		try {
