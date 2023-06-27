@@ -70,6 +70,7 @@ public class ClienteRepository{
 			
 			JOptionPane.showMessageDialog(null, "Cliente de nome: " + cliente.Nome + " inserido com sucesso!");
 		} catch (SQLException e) {			
+			JOptionPane.showMessageDialog(null, "Ops! Ocorreu um erro ao inserir cliente");
 			System.out.println("Erro ao inserir cliente " + e.getMessage());
 		}
 	}
@@ -97,6 +98,7 @@ public class ClienteRepository{
 			
 			JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
 		} catch (SQLException e) {			
+			JOptionPane.showMessageDialog(null, "Ops! Ocorreu um erro ao editar cliente");
 			System.out.println("Erro ao alterar cliente: " + e.getMessage());
 		}	
 	}
@@ -137,40 +139,8 @@ public class ClienteRepository{
 			
 			JOptionPane.showMessageDialog(null, "Cliente removido com sucesso!");
 		} catch (SQLException e) {			
+			JOptionPane.showMessageDialog(null, "Ops! Ocorreu um erro ao remover cliente");
 			System.out.println("Erro ao remover cliente: " + e.getMessage());
 		} 
 	}
-
-	public void RecuperarPorNome(Connection conexao) {
-		PreparedStatement ps = null;
-		String query = "SELECT * FROM cliente WHERE nome LIKE ?";
-		String nome = "%" + JOptionPane.showInputDialog("Informe o nome: ") + "%";
-		
-		try {
-			ps = conexao.prepareStatement(query);
-			ps.setString(1, nome);
-			ResultSet resultSet = ps.executeQuery();
-			
-			while (resultSet.next()) {
-				Cliente cliente = new Cliente();				
-				cliente.Nome = resultSet.getString("nome");
-				cliente.Email = resultSet.getString("email");
-				cliente.NumeroTelefone = resultSet.getString("numeroTelefone");
-				cliente.Cpf = resultSet.getString("cpf");
-				cliente.DataNascimento = resultSet.getString("dataNascimento");
-
-				JOptionPane.showMessageDialog(null,
-						"Busca por nome: " + cliente.Nome +
-						"\n\nCPF: " + cliente.Cpf +
-						"\nNúmero de telefone: " + cliente.NumeroTelefone +
-						"\nData de nascimento: " + cliente.DataNascimento +
-						"\nE-mail: " + cliente.Email
-					);
-			}
-			resultSet.close();
-			ps.close();
-		} catch (SQLException e) {			
-			System.out.println("Erro ao buscar cliente por nome " + e.getMessage());
-		}
-	}	
 }
