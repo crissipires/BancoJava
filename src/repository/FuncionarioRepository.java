@@ -8,28 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Funcionario;
+import view.ViewFuncionario;
 
 public class FuncionarioRepository {
 	private Statement st;
 	
-	public List<Funcionario> listar(Connection conexao) {
-		String query = "SELECT * FROM funcionario";	
-		List<Funcionario> lista = new ArrayList<>();
+	public List<ViewFuncionario> listar(Connection conexao) {
+		String query = "SELECT * FROM viewFuncionario";	
+		List<ViewFuncionario> lista = new ArrayList<>();
 		
 		try {
 			st = conexao.createStatement();
 			ResultSet resultSet = st.executeQuery(query);
 						
 			while (resultSet.next()) {
-				Funcionario funcionario = new Funcionario();				
-				funcionario.id = resultSet.getInt("idFuncionario");
-				funcionario.nome = resultSet.getString("nome");
-				funcionario.cpf = resultSet.getString("cpf");
-				funcionario.dataNascimento = resultSet.getString("dataNascimento");
-				funcionario.telefone = resultSet.getString("telefone");
-				funcionario.salario = resultSet.getFloat("salario");
-				funcionario.idCargo = resultSet.getInt("Cargo_idCargo1");
-				funcionario.idEndereco = resultSet.getInt("Endereco_idEndereco");
+				ViewFuncionario funcionario = new ViewFuncionario();				
+				funcionario.idFuncionario = resultSet.getInt("idFuncionario");
+				funcionario.nomeFuncionario = resultSet.getString("nomeFuncionario");
+				funcionario.descricaoCargo = resultSet.getString("descricaoCargo");
 				
 			    lista.add(funcionario);
 			}

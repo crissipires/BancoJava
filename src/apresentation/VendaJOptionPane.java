@@ -27,7 +27,7 @@ public class VendaJOptionPane {
 		List<ViewVenda> listaVendas = _vendaRepository.Listar(_banco.getConexao());
 		System.out.println("------- VENDAS -------");
 		for (ViewVenda venda : listaVendas) {
-			System.out.println("Id da Venda: " + venda.idVenda);
+			System.out.println("Código da Venda: " + venda.idVenda);
 			System.out.println("Nome do Funcionario: " + venda.nomeFuncionario);
 			System.out.println("Nome do Cliente: " + venda.nomeCliente);
 			System.out.println("Data do agendamento: " + venda.dataAtendimento);

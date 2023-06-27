@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Banco;
 import repository.EnderecoRepository;
+import view.ViewEndereco;
 import model.Endereco;
 
 public class EnderecoJOptionPane {
@@ -16,13 +17,15 @@ public class EnderecoJOptionPane {
 	}
 
 	public void Listar() {
-	    List<Endereco> listaEnderecos = _enderecoRepository.listar(_banco.getConexao());
+	    List<ViewEndereco> listaEnderecos = _enderecoRepository.listar(_banco.getConexao());
 	    System.out.println("------- ENDEREÇOS -------");
-	    for (Endereco endereco : listaEnderecos) {
-	        System.out.println("Id do Endereco: " + endereco.idendereco);
+	    for (ViewEndereco endereco : listaEnderecos) {
+	        System.out.println("Código do Endereco: " + endereco.idEndereco);
 	        System.out.println("Logradouro: " + endereco.logradouro);
-	        System.out.println("Complemento: " + endereco.complemento);
-	        System.out.println("Id do Bairro: " + endereco.idbairro);
+	        System.out.println("Bairro: " + endereco.nomeBairro);
+	        System.out.println("Cidade: " + endereco.nomeCidade);
+	        System.out.println("Estado: " + endereco.nomeEstado);
+	        System.out.println("País: " + endereco.nomePais);
 	        System.out.println("---------------------------------");
 	    }
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import model.Banco;
 import model.Funcionario;
 import repository.FuncionarioRepository;
+import view.ViewFuncionario;
 
 public class FuncionarioJOptionPane {
 
@@ -17,17 +18,12 @@ public class FuncionarioJOptionPane {
 	}
 	
 	public void Listar() {
-		List<Funcionario> listafuncionarios = _funcionarioRepository.listar(_banco.getConexao());
+		List<ViewFuncionario> listafuncionarios = _funcionarioRepository.listar(_banco.getConexao());
 		System.out.println("------- FUNCIONÁRIOS -------");
-		for (Funcionario funcionario : listafuncionarios) {
-			System.out.println("Id do Funcionário: " + funcionario.id);
-			System.out.println("Nome: " + funcionario.nome);
-			System.out.println("CPF: " + funcionario.cpf);
-			System.out.println("Telefone: " + funcionario.telefone);
-			System.out.println("Data de Nascimento: " + funcionario.dataNascimento);
-			System.out.println("Salário: " + funcionario.salario);
-			System.out.println("Id do Cargo : " + funcionario.idCargo);
-			System.out.println("Id do Endereço: " + funcionario.idEndereco);
+		for (ViewFuncionario funcionario : listafuncionarios) {
+			System.out.println("Código do Funcionário: " + funcionario.idFuncionario);
+			System.out.println("Nome: " + funcionario.nomeFuncionario);
+			System.out.println("Cargo: " + funcionario.descricaoCargo);
 			System.out.println("---------------------------------");
 		}
 	}

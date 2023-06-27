@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import model.ItemVenda;
+import view.ViewItemVenda;
 
 public class ItemVendaRepository {
 	
@@ -40,19 +41,20 @@ public class ItemVendaRepository {
 		}
 	}
 	
-	public List<ItemVenda> Listar(Connection conexao) {
-		String query = "SELECT * FROM itensVenda";
-		List<ItemVenda> lista = new ArrayList<>();
+	public List<ViewItemVenda> Listar(Connection conexao) {
+		String query = "SELECT * FROM viewItensVenda";
+		List<ViewItemVenda> lista = new ArrayList<>();
 		
 		try {
 			st = conexao.createStatement();
 			ResultSet resultSet = st.executeQuery(query);
 			
 			while(resultSet.next()) {
-				ItemVenda itemVenda = new ItemVenda();
-				itemVenda.IdVenda = resultSet.getInt("Venda_idVenda");
-				itemVenda.IdProcedimento = resultSet.getInt("Procedimento_idProcedimento");
-				itemVenda.Valor = resultSet.getFloat("valor");
+				ViewItemVenda itemVenda = new ViewItemVenda();
+				itemVenda.idVenda = resultSet.getInt("Venda_idVenda");
+				itemVenda.nomeCliente = resultSet.getString("nomeCliente");
+				itemVenda.valor = resultSet.getFloat("valor");
+				itemVenda.descricaoProcedimento = resultSet.getString("descricaoProcedimento");
 				itemVenda.quantidade = resultSet.getInt("quantidade");
 				
 				lista.add(itemVenda);

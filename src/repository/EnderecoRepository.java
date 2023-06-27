@@ -8,25 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Endereco;
+import view.ViewEndereco;
 
 
 public class EnderecoRepository {
 	private Statement st;
 
-	public List<Endereco> listar(Connection conexao) {
-		String query = "SELECT * FROM endereco";
-		List<Endereco> lista = new ArrayList<>();
+	public List<ViewEndereco> listar(Connection conexao) {
+		String query = "SELECT * FROM viewEndereco";
+		List<ViewEndereco> lista = new ArrayList<>();
 
 		try {
 			st = conexao.createStatement();
 			ResultSet resultSet = st.executeQuery(query);
 
 			while (resultSet.next()) {
-				Endereco endereco = new Endereco();
-				endereco.idendereco = resultSet.getInt("idEndereco");
+				ViewEndereco endereco = new ViewEndereco();
+				endereco.idEndereco = resultSet.getInt("idEndereco");
 				endereco.logradouro = resultSet.getString("logradouro");
-				endereco.complemento = resultSet.getString("complemento");
-				endereco.idbairro = resultSet.getInt("Bairro_idBairro");
+				endereco.nomeBairro = resultSet.getString("nomeBairro");
+				endereco.nomeCidade = resultSet.getString("nomeCidade");
+				endereco.nomeEstado = resultSet.getString("nomeEstado");
+				endereco.nomePais = resultSet.getString("nomePais");
 
 				lista.add(endereco);
 			}

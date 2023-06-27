@@ -8,6 +8,7 @@ import model.Banco;
 import model.ItemVenda;
 import model.Venda;
 import repository.ItemVendaRepository;
+import view.ViewItemVenda;
 
 public class ItemVendaJOptionPane {
 	
@@ -25,12 +26,13 @@ public class ItemVendaJOptionPane {
 	}
 
 	public void Listar() {
-		 List<ItemVenda> listaVendas = _itemVendaRepository.Listar(_banco.getConexao());
+		 List<ViewItemVenda> listaVendas = _itemVendaRepository.Listar(_banco.getConexao());
 		 System.out.println("------- ITENS VENDA -------");
-		 for(ItemVenda item : listaVendas) {
-			 System.out.println("Id da venda: " + item.IdVenda);
-		     System.out.println("Id do procedimento: " + item.IdProcedimento);
-		     System.out.println("Valor: " + item.Valor);
+		 for(ViewItemVenda item : listaVendas) {
+			 System.out.println("Código da venda: " + item.idVenda);
+			 System.out.println("Nome do cliente: " + item.nomeCliente);
+		     System.out.println("Descrição do Procedimento: " + item.descricaoProcedimento);
+		     System.out.println("Valor: " + item.valor);
 		     System.out.println("Quantidade: " + item.quantidade);
 		     System.out.println("---------------------------------");
 		 }
