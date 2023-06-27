@@ -24,11 +24,13 @@ public class VendaJOptionPane {
 
 	public void Listar() {
 		List<Venda> listaVendas = _vendaRepository.Listar(_banco.getConexao());
+		System.out.println("------- VENDAS -------");
 		for (Venda venda : listaVendas) {
 			System.out.println("Id da Venda: " + venda.Id);
 			System.out.println("Id do Funcionario: " + venda.IdFuncionario);
 			System.out.println("Id do Cliente: " + venda.IdCliente);
 			System.out.println("Id da Agenda: " + venda.IdAgenda);
+			System.out.println("Observações: " + venda.observacoes);
 			System.out.println("---------------------------------");
 		}
 	}
@@ -42,8 +44,9 @@ public class VendaJOptionPane {
 		int codigoFuncionario = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de Venda\n\nInforme o Código do funcionário:"));
 		int codigoCliente = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de Venda\n\nInforme o Código do cliente:"));
 		int codigoAgenda = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de Venda\n\nInforme o Código da agenda:"));
+		String obs = JOptionPane.showInputDialog("Cadastro de Venda\n\nObservações:");
 		
-		return new Venda(codigoFuncionario, codigoCliente, codigoAgenda);
+		return new Venda(codigoFuncionario, codigoCliente, codigoAgenda, obs);
 	}
 	
 	private Venda Atualizar() {
@@ -51,8 +54,9 @@ public class VendaJOptionPane {
 		int codigoFuncionario = Integer.parseInt(JOptionPane.showInputDialog("Edição de Venda\n\nInforme o Código do funcionário:"));
 		int codigoCliente = Integer.parseInt(JOptionPane.showInputDialog("Edição de Venda\n\nInforme o Código do cliente:"));
 		int codigoAgenda = Integer.parseInt(JOptionPane.showInputDialog("Edição de Venda\n\nInforme o Código da agenda:"));
+		String obs = JOptionPane.showInputDialog("Edição de Venda\n\nObservações:");
 		
-		return new Venda(codigoVenda,codigoFuncionario, codigoCliente, codigoAgenda);			
+		return new Venda(codigoVenda,codigoFuncionario, codigoCliente, codigoAgenda, obs);			
 	}
 	
 	private int RemoverVenda() {

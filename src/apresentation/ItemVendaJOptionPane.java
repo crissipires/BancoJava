@@ -26,10 +26,12 @@ public class ItemVendaJOptionPane {
 
 	public void Listar() {
 		 List<ItemVenda> listaVendas = _itemVendaRepository.Listar(_banco.getConexao());
+		 System.out.println("------- ITENS VENDA -------");
 		 for(ItemVenda item : listaVendas) {
 			 System.out.println("Id da venda: " + item.IdVenda);
 		     System.out.println("Id do procedimento: " + item.IdProcedimento);
 		     System.out.println("Valor: " + item.Valor);
+		     System.out.println("Quantidade: " + item.quantidade);
 		     System.out.println("---------------------------------");
 		 }
 	}
@@ -48,16 +50,18 @@ public class ItemVendaJOptionPane {
 		int codigoVenda = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme o Código da venda:"));
 		int codigoProcedimento = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme o Código do procedimento:"));
 		float valor = Float.parseFloat(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme o valor da venda:"));
+		int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme a quantidade de procedimento(s):"));
 		
-		return new ItemVenda(codigoVenda, codigoProcedimento, valor);
+		return new ItemVenda(codigoVenda, codigoProcedimento, valor, quantidade);
 	}
 	
 	public static ItemVenda AtualizarItemVenda() {
 		int codigoItemVenda = Integer.parseInt(JOptionPane.showInputDialog("Edição de ItemVenda\n\nInforme o Código da venda:"));
 		int codigoProcedimento = Integer.parseInt(JOptionPane.showInputDialog("Edição de ItemVenda\n\nInforme o Código do procedimento:"));
 		float valor = Float.parseFloat(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme o valor da venda:"));
+		int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Cadastro de ItemVenda\n\nInforme a quantidade de itens:"));
 		
-		return new ItemVenda(codigoItemVenda,codigoProcedimento, valor);	
+		return new ItemVenda(codigoItemVenda,codigoProcedimento, valor, quantidade);	
 	}
 	
 	public static int RemoverItemVenda() {

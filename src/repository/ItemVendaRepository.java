@@ -22,14 +22,15 @@ public class ItemVendaRepository {
 		}
 		
 		PreparedStatement ps = null;
-		String query = "INSERT INTO itensVenda (Procedimento_idProcedimento, valor, Venda_idVenda)"
-				+ " VALUES (?, ?, ?)";
+		String query = "INSERT INTO itensVenda (Procedimento_idProcedimento, valor, Venda_idVenda, quantidade)"
+				+ " VALUES (?, ?, ?, ?)";
 		
 		try {
 			ps = conexao.prepareStatement(query);
 			ps.setInt(1, itemVenda.IdProcedimento);
 			ps.setFloat(2, itemVenda.Valor);
 			ps.setInt(3, itemVenda.IdVenda);
+			ps.setInt(4, itemVenda.quantidade);
 			ps.execute();
 			ps.close();
 			
@@ -52,6 +53,7 @@ public class ItemVendaRepository {
 				itemVenda.IdVenda = resultSet.getInt("Venda_idVenda");
 				itemVenda.IdProcedimento = resultSet.getInt("Procedimento_idProcedimento");
 				itemVenda.Valor = resultSet.getFloat("valor");
+				itemVenda.quantidade = resultSet.getInt("quantidade");
 				
 				lista.add(itemVenda);
 			}
@@ -70,13 +72,14 @@ public class ItemVendaRepository {
 		}
 		
 		PreparedStatement ps = null;
-		String query = "UPDATE itensVenda SET Procedimento_idProcedimento = ?, valor = ?" +
+		String query = "UPDATE itensVenda SET Procedimento_idProcedimento = ?, valor = ?, quantidade = ?" +
 				"WHERE idItemVenda";
 		
 		try {
 			ps = conexao.prepareStatement(query);
 			ps.setInt(1, itemVenda.IdProcedimento);
 			ps.setFloat(2, itemVenda.Valor);
+			ps.setInt(3, itemVenda.quantidade);
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {
@@ -90,11 +93,12 @@ public class ItemVendaRepository {
 		}
 		
 		PreparedStatement ps = null;
-		String query = "DELETE FROM itemVenda WHERE idItemVenda = ?";
+		String query = "DELETE FROM itensVenda WHERE Venda_idVenda = ?";
 		
 		try {
 			ps = conexao.prepareStatement(query);
 			ps.setInt(1, id);
+			ps.setInt(2, id);
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {

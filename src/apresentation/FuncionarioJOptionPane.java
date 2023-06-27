@@ -18,6 +18,7 @@ public class FuncionarioJOptionPane {
 	
 	public void Listar() {
 		List<Funcionario> listafuncionarios = _funcionarioRepository.listar(_banco.getConexao());
+		System.out.println("------- FUNCIONÁRIOS -------");
 		for (Funcionario funcionario : listafuncionarios) {
 			System.out.println("Id do Funcionário: " + funcionario.id);
 			System.out.println("Nome: " + funcionario.nome);

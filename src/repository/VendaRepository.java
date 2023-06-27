@@ -32,6 +32,7 @@ public class VendaRepository {
 				venda.IdAgenda = resultSet.getInt("Agenda_idAgenda");
 				venda.IdCliente = resultSet.getInt("Cliente_idCliente");
 				venda.IdFuncionario = resultSet.getInt("Funcionario_idFuncionario");
+				venda.observacoes = resultSet.getString("observacoes");
 				
 				lista.add(venda);
 			} 
@@ -50,14 +51,15 @@ public class VendaRepository {
 		}
 		
 		PreparedStatement ps = null;
-		String query = "INSERT INTO venda (Funcionario_idFuncionario, Cliente_idCliente, Agenda_idAgenda)" +
-				" VALUES (?, ?, ?)";
+		String query = "INSERT INTO venda (Funcionario_idFuncionario, Cliente_idCliente, Agenda_idAgenda, observacoes)" +
+				" VALUES (?, ?, ?, ?)";
 		
 		try {
 			ps = conexao.prepareStatement(query);
 			ps.setInt(1, venda.IdFuncionario);
 			ps.setInt(2, venda.IdCliente);
 			ps.setInt(3, venda.IdAgenda);
+			ps.setString(4, venda.observacoes);
 			ps.execute();
 			ps.close();
 			
@@ -73,7 +75,7 @@ public class VendaRepository {
 		}
 		
 		PreparedStatement ps = null;
-		String query = "UPDATE venda SET Funcionario_idFuncionario = ?, Cliente_idCliente = ?, Agenda_idAgenda = ? "
+		String query = "UPDATE venda SET Funcionario_idFuncionario = ?, Cliente_idCliente = ?, Agenda_idAgenda = ?, observacoes = ? "
 				+ "WHERE idVenda = ?";
 		
 		try {
@@ -81,7 +83,8 @@ public class VendaRepository {
 			ps.setInt(1, venda.IdFuncionario);
 			ps.setInt(2, venda.IdCliente);
 			ps.setInt(3, venda.IdAgenda);
-			ps.setInt(4, venda.Id);
+			ps.setString(4, venda.observacoes);
+			ps.setInt(5, venda.Id);
 			ps.execute();
 			ps.close();
 		} catch (SQLException e) {

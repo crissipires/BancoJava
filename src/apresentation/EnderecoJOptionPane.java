@@ -17,6 +17,7 @@ public class EnderecoJOptionPane {
 
 	public void Listar() {
 	    List<Endereco> listaEnderecos = _enderecoRepository.listar(_banco.getConexao());
+	    System.out.println("------- ENDEREÇOS -------");
 	    for (Endereco endereco : listaEnderecos) {
 	        System.out.println("Id do Endereco: " + endereco.idendereco);
 	        System.out.println("Logradouro: " + endereco.logradouro);
